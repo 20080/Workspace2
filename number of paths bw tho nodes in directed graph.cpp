@@ -32,7 +32,7 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	l = new list<int>[5];
+	l = new list<int>[9999];
 
 
 	l[0].push_back(1);
