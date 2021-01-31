@@ -2,25 +2,31 @@
 using namespace std;
 #define ll long long
 
-string solve() {
+vector <int> solve(vector<int> &grades) {
 
-	int A[26] = {0};
 
-	string s1;
-	string s2;
-	cin >> s1 >> s2;
+	int tem = 0;
+	for (int i = 0; i < grades.size(); i++) {
+		if (grades[i] >= 38 && grades[i] <= 40)
+			grades[i] = 40;
+		if (grades[i] > 40) {
+			tem = grades[i];
+			if (tem % 5 == 0)
+				continue;
+			else {
+				while (tem % 5 != 0) {
+					tem++;
+				}
+				if ((tem - grades[i]) < 3) {
+					grades[i] = tem;
+				}
+			}
+		}
 
-	for (int i = 0; i < s1.size(); i++) {
-		A[s1[i] - 'a']++;
+
 	}
-	for (int i = 0; i < s2.size(); i++) {
-		if (A[s2[i] - 'a'] > 0)
-			return "YES";
-	}
 
-	return "NO";
-
-
+	return grades;
 }
 
 int main() {
@@ -34,8 +40,18 @@ int main() {
 
 	int test = 0;
 	cin >> test;
+	vector<int> ss;
+	for (int i = 0; i < test; i++) {
+		int z = 0;
+		cin >> z;
+		ss.push_back(z);
+	}
 
-	while (test--) {
-		cout << solve() << endl;
+	{
+		std::vector<int> v = solve(ss);
+		for (int i = 0; i < ss.size(); ++i)
+		{
+			cout << ss[i] << endl;
+		}
 	}
 }
