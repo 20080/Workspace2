@@ -1,0 +1,61 @@
+Tree
+
+                                      7(INT_MIN, INT_MAX)
+
+
+                                  /       \
+      
+
+       (INT_MIN, 7(INT_MAX))   4             9    (7(INT_MIN), (INT_MAX))
+
+
+                           /       \       /       \
+
+((INT_MIN), 4(INT_MAX)) 3          5      8        10 (9(INT_MIN), (INT_MAX))
+                                    |     |
+                                    |     |
+                                    |     |(7(INT_MIN), 9(INT_MAX))
+                                    |
+                                    |
+                                    |(4(INT_MIN), 7(INT_MAX))
+
+
+
+
+code
+
+
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child  
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+bool betterFun(Node* t, int min, int max);  
+  
+bool isBST(Node* t)  
+{  
+    return(betterFun(t, INT_MIN, INT_MAX));  
+}  
+
+bool betterFun(Node* r, int min, int max){
+    if(r==NULL)
+    return true;
+    
+    if(r->data<=min||r->data>=max)
+    return false;
+    
+    return betterFun(r->left,min,r->data)&&betterFun(r->right,r->data,max);
+    
+}
+
+
+
