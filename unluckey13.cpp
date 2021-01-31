@@ -2,6 +2,11 @@
 using namespace std;
 #define ll long long
 ll solve(ll num) {
+
+	//mat 1
+	//
+	int M[2][2] = {{99, -10}, {10, -1}};
+
 	ll dp[num];
 	if (num == 0)
 		return 0;
