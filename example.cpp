@@ -10,16 +10,17 @@ int main() {
 	freopen("output.txt", "w", stdout);
 #endif
 
-	int  number;
 
-	cin >> number;
+	uint32_t n = 4294967293;
+	int ans = 0;
+	while (n) {
+		if ((n & 1)) {
+			ans++;
+		}
 
-	int n = 1;
-
-	while (n <= 10) {
-		cout << number << " x " << n << " = " << n*number << endl;
-		n++;
+		n >>= 1;
 
 	}
+	cout << ans;
 
 }

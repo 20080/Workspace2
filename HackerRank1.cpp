@@ -2,31 +2,16 @@
 using namespace std;
 #define ll long long
 
-vector <int> solve(vector<int> &grades) {
+vector <int> solve(vector<int> &arr) {
 
-
-	int tem = 0;
-	for (int i = 0; i < grades.size(); i++) {
-		if (grades[i] >= 38 && grades[i] <= 40)
-			grades[i] = 40;
-		if (grades[i] > 40) {
-			tem = grades[i];
-			if (tem % 5 == 0)
-				continue;
-			else {
-				while (tem % 5 != 0) {
-					tem++;
-				}
-				if ((tem - grades[i]) < 3) {
-					grades[i] = tem;
-				}
-			}
-		}
-
-
+	int lim = arr.size() / 2;
+	int j = arr.size() - 1;
+	for (int i = 0; i < lim; ++i)
+	{
+		swap(arr[i], arr[j]);
+		j--;
 	}
-
-	return grades;
+	return arr;
 }
 
 int main() {
@@ -35,23 +20,24 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-
-
-
-	int test = 0;
-	cin >> test;
-	vector<int> ss;
-	for (int i = 0; i < test; i++) {
-		int z = 0;
-		cin >> z;
-		ss.push_back(z);
-	}
-
+	int l;
+	cin >> l;
+	vector<int> v;
+	for (int i = 0; i < l; ++i)
 	{
-		std::vector<int> v = solve(ss);
-		for (int i = 0; i < ss.size(); ++i)
-		{
-			cout << ss[i] << endl;
-		}
+		int a;
+		cin >> a;
+		v.push_back(a);
 	}
+
+	solve(v);
+
+	for (int i = 0; i < l; ++i)
+	{
+
+		cout << v[i] << " ";
+
+	}
+
+
 }
