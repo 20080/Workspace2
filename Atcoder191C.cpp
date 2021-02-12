@@ -6,60 +6,41 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	int M, N;
-	cin >> M >> N;
 
-	vector<vector<int>> mat (M , vector<int>(N, 0));
+	int H, W;
+	cin >> H >> W;
 
-	for (int i = 0; i < M; i++)
-		for (int j = 0; j < N; j++) {
-			char z;
-			cin >> z;
-
-
-			if (z == '#')
-				mat[i][j] = 1;
-			else
-				mat[i][j] = 0;
-
-		}
-
-	int pram = 4;
-	bool mid = false;
-	int sd = 0;
-	bool corner = false;
-	int x = INT_MIN, y = INT_MIN;
-	int h = 0, m = 0;
-
-	for (int i = 0; i < mat.size(); ++i)
+	vector<vector<int>>v(H + 2, vector<int>(W + 2, 0));
+	for (int i = 1; i < H + 1 ; ++i)
 	{
-		vector<int> v ;
-		for (int j = 0; j < mat[i].size(); ++j)
-		{
-			if (i == 0 || j == 0 || i == M - 1 || j == N - 1)
-				continue;
-
-			v.push_back(mat[i][j]);
-
-			// if(mat[i][j]==1)
-			// 	sd++;
-			// else
-			// {	if((x==1&&y==0)||(x==1&&y==N-1)||(x==M-1&&y==0))
-			// 	x=i;
-			// 	y=j;
-			// }
-			// cout << mat[i][j] << " ";
+		for (int j = 1; j < W + 1 ; ++j)
+		{	char s = 'f';
+			cin >> s;
+			if (s == '#')
+				v[i][j] = 1;
+			else
+				v[i][j] = 0;
 		}
-
-		for (int k = 0; k < v.size(); k++) {
-			if (v[k] == 1) {
-				m = m <
-			}
-		}
-
-
-
-		cout << endl;
 	}
+	int ans = 0;
+	for (int i = 0; i < H; ++i)
+	{
+		for (int j = 0; j < W; ++j)
+		{	int cnt = 0;
+			// cout << v[i][j];
+			if (v[i][j])
+				cnt++;
+			if (v[i][j + 1])
+				cnt++;
+			if (v[i + 1][j])
+				cnt++;
+			if (v[i + 1][j + 1])
+				cnt++;
+			if (cnt % 2)
+				ans++;
+		}
+		// cout << "\n";
 
+	}
+	cout << ans << endl;
 }
