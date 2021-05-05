@@ -1,55 +1,69 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define z for(int i=0;i<n;i++)
+typedef long long ll;
 
-int gcd(int a, int b) {
-	int max = 0, n = 0, c = 0;
-
-	n = a < b ? a : b;
-	for (int i = 1; i < n; i++) {
-		if (a % i == 0 && b % i == 0)
-			c = i;
-		max = max < c ? c : max;
-
+string solution() {
+	int n;
+	cin >> n;
+	vector<int>a(n, 0);
+	vector<int>b(n, 0);
+	for (int i = 0 ; i < n; i++) {
+		cin >> a[i];
+		b[i] = a[i];
 	}
-	return max;
-}
 
-vector<int> solve (int N, int G, vector<int> A) {
-	// Type your code here
-	vector<int> ans(N, 0);
+	map<int, int>m;
+	sort(b.begin(), b.end());
+	//using map as every element here supposed to be unique
+//sorted element index here
+	for (int i = 0 ; i < n; i++) {
+		m[b[i]] = i;
+	}
 
-	for (int i = 0; i < N; i++) {
-		for (int j = i; j < N;) {
-			if (j == i) {
-				j++;
-				continue;
-			}
+//which index element should be where
+	for (int i = 0 ; i < n; i++) {
+		a[i] = m[a[i]];
+	}
 
-			if ((__gcd(A[i], A[j]) == G) && (j > i)) {
-				ans[i] = 1;
-				i++;
+	int first = -1;
 
-			}
-			else {
-				j++;
-			}
+	int last = -1;
+
+
+	for (int i = 0; i < n; ++i)
+	{
+		if (a[i] != i) {
+			first = i;
+			break;
 		}
 	}
-	return ans;
-}
 
-int fun(int m[], int n)
-{
-	int value = 0, last;
-	for (int i = 0; i < n; i++)
+	for (int i = n - 1; i >= 0; --i)
 	{
-		value += m[i];
+		if (a[i] != i) {
+			last = i;
+			break;
+		}
 	}
 
-	last = (n * (n - 1)) / 2;
-	return (value - last);
+	string ans = "";
+
+	if (first == -1 || last == -1)
+	{
+		return "yes\n1 1\n";
+	}
+
+	reverse(a.begin() + first, a.begin() + last + 1);
+
+	for (int i = 0; i < n; ++i)
+	{
+		if (a[i] != i)
+			return "no\n";
+	}
+
+	return "yes\n" + to_string(first + 1) + " " + to_string(last + 1) + "\n";
+
 }
 
 int main() {
@@ -58,7 +72,6 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-	int n[5] = {1, 2, 6, 6, 5};
 
-	cout << (n, 5);
+	cout << solution();
 }

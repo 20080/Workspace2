@@ -9,25 +9,31 @@ int main() {
 // 	freopen("input.txt", "r", stdin);
 // 	freopen("output.txt", "w", stdout);
 // #endif
-	int x, y;
-	int m;
-	for (int i = 0; i < 5; ++i)
-	{
-		for (int j = 0; j < 5; ++j)
-		{
-			cin >> m;
-			if (m == 1) {
-				x = i;
-				y = j;
-			}
+	int a, b, n;
+	cin >> a >> b >> n;
+	int re = 10;
+	a *= 10;
+	for (int i = 0; i <= 9; ++i)
+	{	re = (a + i);
+		if (re % b == 0) {
+			break;
 		}
 	}
 
-	int ans = 0;
+	if (re % b == 0)
+	{
+		string ans = "";
+		ans = to_string(re);
+		for (int i = 0; i < n - 1; ++i)
+		{
+			ans += '0';
+		}
 
-	ans += abs(x - 2);
-	ans += abs(y - 2);
-	cout << ans << endl;
+		cout << ans << endl;
+		return 0;
+
+	}
+	cout << -1 << endl;
 
 	return 0;
 }
