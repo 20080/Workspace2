@@ -12,7 +12,7 @@ vector<int> print(vector<vector<int>> v, int m, int n) {
 	while (top <= bottom && left <= right)
 	{
 		if (dir == 0) {
-			for (int i = 0; i <= right; ++i)
+			for (int i = top; i <= right; ++i)
 			{
 				ans.push_back(v[top][i]);
 
@@ -50,9 +50,6 @@ vector<int> print(vector<vector<int>> v, int m, int n) {
 			left++;
 			dir = 0;
 		}
-
-
-
 
 
 	}
