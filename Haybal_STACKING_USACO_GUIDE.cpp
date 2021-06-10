@@ -4,10 +4,10 @@ using namespace std;
 #define ll long long
 void solution();
 int main() {
-// #ifndef ONLINE_JUDGE
-// 	freopen("input.txt", "r", stdin);
-// 	freopen("output.txt", "w", stdout);
-// #endif
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
 	solution();
 	return 0;
 }
@@ -17,21 +17,27 @@ void solution() {
 
 	int N, K;
 	cin >> N >> K;
-	int arr[N] = {0};
+	int difference[N + 1] = {0};
+	int ans[N] = {0};
 
 	while (K--) {
 		int a, b;
 		cin >> a >> b;
-		if (a == b) {
-			arr[a]++;
-			continue;
-		}
-		for (int i = a; i <= b; ++i)
-		{
-			arr[i]++;
-		}
+		a--;
+		b--;
+		difference[a]++;
+		difference[b + 1]--;
+
 	}
-	sort(arr, arr + N);
-	cout << arr[N / 2] << endl;
+
+	int tot = 0;
+	for (int i = 0; i < N; ++i)
+	{
+		tot += difference[i];
+		ans[i] = tot;
+	}
+
+	sort(ans, ans + N);
+	cout << ans[N / 2] << endl;
 
 }
